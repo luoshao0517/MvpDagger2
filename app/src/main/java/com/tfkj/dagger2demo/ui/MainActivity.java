@@ -1,7 +1,5 @@
 package com.tfkj.dagger2demo.ui;
 
-import android.content.Intent;
-import android.util.Log;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -34,8 +32,13 @@ public class MainActivity extends BaseMvpActivity<MainContract.MainView, MainPre
     }
 
     @Override
+    protected void doPresenter() {
+
+    }
+
+    @Override
     protected void initInject() {
-        getActivityComponent().inject(this);
+        mActivityComponent.inject(this);
     }
 
 
@@ -43,7 +46,6 @@ public class MainActivity extends BaseMvpActivity<MainContract.MainView, MainPre
     public void showToast() {
         mPerson.setName("小明");
         mPresenter.startActivity();
-
     }
 
     @Override
