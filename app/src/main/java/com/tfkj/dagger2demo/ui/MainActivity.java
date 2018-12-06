@@ -10,6 +10,7 @@ import com.tfkj.dagger2demo.base.BaseMvpActivity;
 import com.tfkj.dagger2demo.bean.Person;
 import com.tfkj.dagger2demo.common.BundleCommon;
 import com.tfkj.dagger2demo.common.Constance;
+import com.tfkj.dagger2demo.util.ARouterUtils;
 
 import javax.inject.Inject;
 
@@ -53,21 +54,6 @@ public class MainActivity extends BaseMvpActivity<MainContract.MainView, MainPre
 
     @Override
     public void startActivity() {
-        mARouter.build(Constance.ACTIVITY_URL_FIRST)
-                .withParcelable(BundleCommon.PERSON, mPerson)
-                .withTransition(R.anim.anim_in, R.anim.anim_out)
-                .navigation(this,123);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case 123:
-                Log.e(TAG,"收到了来自第二个页面的数据"+resultCode);
-                break;
-            default:
-                break;
-        }
+        ARouterUtils.switchToFirstActivity(BundleCommon.PERSON, mPerson);
     }
 }
