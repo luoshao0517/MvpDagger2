@@ -2,6 +2,7 @@ package com.tfkj.dagger2demo.app;
 
 import android.app.Application;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.tfkj.dagger2demo.di.component.AppComponent;
 import com.tfkj.dagger2demo.di.component.DaggerAppComponent;
 import com.tfkj.dagger2demo.di.module.AppModule;
@@ -17,10 +18,17 @@ public class MyApplication extends Application {
 
     private static MyApplication mInstance;
 
+    private boolean isDebug = true;
+
     @Override
     public void onCreate() {
         super.onCreate();
         setInstance(this);
+        if(isDebug){
+            ARouter.openLog();
+            ARouter.openDebug();
+        }
+        ARouter.init(mInstance);
     }
 
     /**
@@ -44,5 +52,11 @@ public class MyApplication extends Application {
 
     public static void setInstance(MyApplication mInstance) {
         MyApplication.mInstance = mInstance;
+    }
+
+    @Override
+    public void onTerminate() {
+        super.onTerminate();
+        ARouter.getInstance().destroy();
     }
 }

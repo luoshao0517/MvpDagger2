@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.tfkj.dagger2demo.app.MyApplication;
 import com.tfkj.dagger2demo.di.component.ActivityComponent;
 import com.tfkj.dagger2demo.di.component.DaggerActivityComponent;
@@ -21,7 +22,7 @@ import butterknife.ButterKnife;
 public abstract class BaseMvpActivity<V extends BaseView, P extends BaseMvpPresenter<V>> extends Activity {
     @Inject
     protected P mPresenter;
-
+    protected ARouter mARouter;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +31,9 @@ public abstract class BaseMvpActivity<V extends BaseView, P extends BaseMvpPrese
         }
         ButterKnife.bind(this);
         initInject();
+        //Arouter 注入
+        mARouter = ARouter.getInstance();
+        mARouter.inject(this);
         //创建连接
         if (!mPresenter.isViewAttached()) {
             mPresenter.subscribe((V) this);
