@@ -1,5 +1,7 @@
 package com.tfkj.dagger2demo.ui;
 
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -18,23 +20,14 @@ import butterknife.OnClick;
 @Route(path = Constance.ACTIVITY_URL_MAIN)
 public class MainActivity extends BaseMvpActivity<MainContract.MainView, MainPresenter> implements MainContract.MainView {
 
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
+    @BindView( R.id.btn_text_view)
+    Button btnTextView;
     private String TAG = "MainActivity";
-
-    @BindView(R.id.tv)
-    TextView tv;
 
     @Inject
     Person mPerson;
-
-    @Override
-    protected void initView() {
-        tv.setText(TAG);
-    }
-
-    @Override
-    protected void doPresenter() {
-
-    }
 
     @Override
     protected void initInject() {
@@ -42,10 +35,32 @@ public class MainActivity extends BaseMvpActivity<MainContract.MainView, MainPre
     }
 
 
-    @OnClick(R.id.tv)
-    public void showToast() {
-        mPerson.setName("小明");
-        mPresenter.startActivity();
+    @OnClick({R.id.btn_dagger_mvp, R.id.btn_text_view})
+    public void showToast(View v) {
+        switch (v.getId()) {
+            case R.id.btn_dagger_mvp:
+                mPerson.setName("小明");
+                mPresenter.startFirstActivity();
+                break;
+            case R.id.btn_text_view:
+                mPresenter.startTextViewActivity(btnTextView.getText().toString());
+                break;
+            default:
+                break;
+        }
+
+    }
+
+    @Override
+    protected void initView() {
+        super.initView();
+        tvTitle.setText("小Demo");
+    }
+
+    @Override
+    protected void initImmersionBar() {
+        super.initImmersionBar();
+        mImmersionBar.titleBar(tvTitle).statusBarAlpha(0.3f).init();
     }
 
     @Override
@@ -55,7 +70,12 @@ public class MainActivity extends BaseMvpActivity<MainContract.MainView, MainPre
 
 
     @Override
-    public void startActivity() {
+    public void startFirstActivity() {
         ARouterUtils.switchToFirstActivity(BundleCommon.PERSON, mPerson);
+    }
+
+    @Override
+    public void startTextViewActivity(String title) {
+        ARouterUtils.switchToTextViewActivity(title);
     }
 }

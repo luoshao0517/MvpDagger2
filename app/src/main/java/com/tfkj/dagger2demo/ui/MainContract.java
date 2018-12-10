@@ -5,10 +5,12 @@ import com.tfkj.dagger2demo.base.BaseView;
 
 public interface MainContract {
     interface MainView extends BaseView {
-        void startActivity();
+        void startFirstActivity();
+        void startTextViewActivity(String title);
     }
 
     interface Presenter extends BasePresenter<MainView> {
-        void startActivity();
+        void startFirstActivity();
+        void startTextViewActivity(String title);
     }
 }

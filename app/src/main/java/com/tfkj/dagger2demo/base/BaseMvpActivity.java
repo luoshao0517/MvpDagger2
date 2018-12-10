@@ -30,7 +30,7 @@ public abstract class BaseMvpActivity<V extends BaseView, P extends BaseMvpPrese
         doPresenter();
     }
 
-    protected abstract void doPresenter();
+    protected  void doPresenter(){}
 
 
     @Override

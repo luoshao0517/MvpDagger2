@@ -12,7 +12,12 @@ public class MainPresenter extends BaseMvpPresenter<MainContract.MainView> imple
 
 
     @Override
-    public void startActivity() {
-        getView().startActivity();
+    public void startFirstActivity() {
+        getView().startFirstActivity();
+    }
+
+    @Override
+    public void startTextViewActivity(String title) {
+        getView().startTextViewActivity(title);
     }
 }
