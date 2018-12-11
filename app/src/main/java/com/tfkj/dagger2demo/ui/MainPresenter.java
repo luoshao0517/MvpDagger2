@@ -20,4 +20,9 @@ public class MainPresenter extends BaseMvpPresenter<MainContract.MainView> imple
     public void startTextViewActivity(String title) {
         getView().startTextViewActivity(title);
     }
+
+    @Override
+    public void startChartActivity() {
+        getView().startChartActivity();
+    }
 }

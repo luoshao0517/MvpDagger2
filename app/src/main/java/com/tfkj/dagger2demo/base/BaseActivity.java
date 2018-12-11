@@ -30,7 +30,6 @@ public abstract class BaseActivity extends Activity {
         if(isImmersionBar){
             initImmersionBar();
         }
-        initImmersionBar();
         //Arouter 注入
         mARouter = ARouter.getInstance();
         mARouter.inject(this);

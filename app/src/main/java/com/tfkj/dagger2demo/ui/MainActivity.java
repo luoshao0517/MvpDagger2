@@ -35,7 +35,7 @@ public class MainActivity extends BaseMvpActivity<MainContract.MainView, MainPre
     }
 
 
-    @OnClick({R.id.btn_dagger_mvp, R.id.btn_text_view})
+    @OnClick({R.id.btn_dagger_mvp, R.id.btn_text_view,R.id.btn_text_chart})
     public void showToast(View v) {
         switch (v.getId()) {
             case R.id.btn_dagger_mvp:
@@ -44,6 +44,9 @@ public class MainActivity extends BaseMvpActivity<MainContract.MainView, MainPre
                 break;
             case R.id.btn_text_view:
                 mPresenter.startTextViewActivity(btnTextView.getText().toString());
+                break;
+            case R.id.btn_text_chart:
+                mPresenter.startChartActivity();
                 break;
             default:
                 break;
@@ -77,5 +80,10 @@ public class MainActivity extends BaseMvpActivity<MainContract.MainView, MainPre
     @Override
     public void startTextViewActivity(String title) {
         ARouterUtils.switchToTextViewActivity(title);
+    }
+
+    @Override
+    public void startChartActivity() {
+        ARouterUtils.switchToChartActivity();
     }
 }

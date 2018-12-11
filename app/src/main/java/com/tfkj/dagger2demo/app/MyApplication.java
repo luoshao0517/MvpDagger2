@@ -1,12 +1,14 @@
 package com.tfkj.dagger2demo.app;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.tfkj.dagger2demo.di.component.AppComponent;
 import com.tfkj.dagger2demo.di.component.DaggerAppComponent;
 import com.tfkj.dagger2demo.di.module.AppModule;
 import com.tfkj.dagger2demo.di.module.HttpModule;
+import com.tfkj.dagger2demo.util.CrashHandler;
 
 /**
  * @author luodacheng
@@ -29,6 +31,8 @@ public class MyApplication extends Application {
             ARouter.openDebug();
         }
         ARouter.init(mInstance);
+        //log日志抓取
+        CrashHandler.getInstance().init(this);
     }
 
     /**
@@ -54,6 +58,9 @@ public class MyApplication extends Application {
         MyApplication.mInstance = mInstance;
     }
 
+    public static Context getContext(){
+        return getContext();
+    }
     @Override
     public void onTerminate() {
         super.onTerminate();

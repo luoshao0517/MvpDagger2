@@ -6,6 +6,7 @@ import com.tfkj.dagger2demo.common.BundleCommon;
 import com.tfkj.dagger2demo.common.Constance;
 import com.tfkj.dagger2demo.ui.MainActivity;
 import com.tfkj.dagger2demo.ui.first.FirstActivity;
+import com.tfkj.dagger2demo.ui.mpchart.ChartActivity;
 import com.tfkj.dagger2demo.ui.text.TextViewActivity;
 
 public class ARouterUtils {
@@ -27,5 +28,12 @@ public class ARouterUtils {
      */
     public static void switchToTextViewActivity(String name){
         ARouter.getInstance().build(Constance.ACTIVITY_URL_TEXTVIEW).withString(BundleCommon.TITLE,name).navigation();
+    }
+
+    /**
+     * {@link ChartActivity}
+     */
+    public static void switchToChartActivity(){
+        ARouter.getInstance().build(Constance.ACTIVITY_URL_CHART).navigation();
     }
 }

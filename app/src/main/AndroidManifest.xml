@@ -47,7 +47,8 @@
         </activity>
         <activity android:name=".ui.MainActivity" />
         <activity android:name=".ui.first.FirstActivity" />
-        <activity android:name=".ui.text.TextViewActivity"></activity>
+        <activity android:name=".ui.text.TextViewActivity" />
+        <activity android:name=".ui.mpchart.ChartActivity"></activity>
     </application>
 
 </manifest>

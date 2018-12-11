@@ -7,10 +7,12 @@ public interface MainContract {
     interface MainView extends BaseView {
         void startFirstActivity();
         void startTextViewActivity(String title);
+        void startChartActivity();
     }
 
     interface Presenter extends BasePresenter<MainView> {
         void startFirstActivity();
         void startTextViewActivity(String title);
+        void startChartActivity();
     }
 }
