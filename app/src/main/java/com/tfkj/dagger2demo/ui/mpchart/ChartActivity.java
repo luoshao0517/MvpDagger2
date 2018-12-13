@@ -35,36 +35,30 @@ public class ChartActivity extends BaseActivity {
     protected void initView() {
         super.initView();
         mChart = (PieChart) findViewById(R.id.pieChart);
-        PieData mPieData = getPieData(4, 100);
+        PieData mPieData = getPieData(6, 100);
         showChart(mChart, mPieData);
     }
-
+//
     private void showChart(PieChart pieChart, PieData pieData) {
-
-        pieChart.setHoleRadius(60f);  //半径
-        pieChart.setTransparentCircleRadius(64f); // 半透明圈
-        //pieChart.setHoleRadius(0)  //实心圆
+        //半径
+        pieChart.setHoleRadius(60f);
+        // 半透明圈
+        pieChart.setTransparentCircleRadius(64f);
+        //实心圆
+        //pieChart.setHoleRadius(0);
         Description description = new Description();
         description.setText("测试");
         pieChart.setDescription(description);
-
-        // mChart.setDrawYValues(true);
-        pieChart.setDrawCenterText(true);  //饼状图中间可以添加文字
-
+        //饼状图中间可以添加文字
+        pieChart.setDrawCenterText(true);
+        //将此设置为true以将饼心绘制为空
         pieChart.setDrawHoleEnabled(true);
-
-        pieChart.setRotationAngle(90); // 初始旋转角度
-
-        // draws the corresponding description value into the slice
-        // mChart.setDrawXValues(true);
-
-        // enable rotation of the chart by touch
-        pieChart.setRotationEnabled(true); // 可以手动旋转
-
-        // display percentage values
-        pieChart.setUsePercentValues(true);  //显示成百分比
-        // mChart.setUnit(" €");
-        // mChart.setDrawUnitsInChart(true);
+        // 初始旋转角度
+        pieChart.setRotationAngle(90);
+        // 可以手动旋转
+        pieChart.setRotationEnabled(true);
+        //显示成百分比
+        pieChart.setUsePercentValues(true);
 
         // add a selection listener
 //      mChart.setOnChartValueSelectedListener(this);
@@ -80,14 +74,16 @@ public class ChartActivity extends BaseActivity {
         // undo all highlights
 //      pieChart.highlightValues(null);
 //      pieChart.invalidate();
-
-        Legend mLegend = pieChart.getLegend();  //设置比例图
-        mLegend.setPosition(Legend.LegendPosition.RIGHT_OF_CHART);  //最右边显示
-//      mLegend.setForm(LegendForm.LINE);  //设置比例图的形状，默认是方形
+        //设置比例图
+        Legend mLegend = pieChart.getLegend();
+        //最右边显示
+        mLegend.setPosition(Legend.LegendPosition.ABOVE_CHART_CENTER);
+        //设置比例图的形状，默认是方形
+//      mLegend.setForm(LegendForm.LINE);
         mLegend.setXEntrySpace(7f);
         mLegend.setYEntrySpace(5f);
-
-        pieChart.animateXY(1000, 1000);  //设置动画
+        //设置动画
+        pieChart.animateXY(1000, 1000);
         // mChart.spin(2000, 0, 360);
     }
 
@@ -110,20 +106,29 @@ public class ChartActivity extends BaseActivity {
          * 将一个饼形图分成四部分， 四部分的数值比例为14:14:34:38
          * 所以 14代表的百分比就是14%
          */
-        float quarterly1 = 14;
-        float quarterly2 = 14;
+        float quarterly1 = 1;
+        float quarterly2 = 27;
         float quarterly3 = 34;
         float quarterly4 = 38;
-
+        float quarterly5 = 38;
+        float quarterly6 = 38;
         yValues.add(new PieEntry(quarterly1,xValues.get(0), 0));
         yValues.add(new PieEntry(quarterly2, xValues.get(1),1));
         yValues.add(new PieEntry(quarterly3, xValues.get(2),2));
         yValues.add(new PieEntry(quarterly4,xValues.get(3), 3));
-
+        yValues.add(new PieEntry(quarterly5,xValues.get(4), 4));
+        yValues.add(new PieEntry(quarterly6,xValues.get(5), 5));
         //y轴的集合
         PieDataSet pieDataSet = new PieDataSet(yValues, "Quarterly Revenue 2014");
+        //设置内容在饼状图外显示
+        pieDataSet.setXValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
+        //设置数值在饼状图外显示
+        pieDataSet.setYValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
+        //设置指示线的颜色和饼状图相同
+        pieDataSet.setUsingSliceColorAsValueLineColor(true);
+        pieDataSet.setValueLinePart2Length(0.8f);
         //设置个饼状图之间的距离
-        pieDataSet.setSliceSpace(0f);
+        pieDataSet.setSliceSpace(0.3f);
 
         ArrayList<Integer> colors = new ArrayList<Integer>();
 
@@ -132,7 +137,8 @@ public class ChartActivity extends BaseActivity {
         colors.add(Color.rgb(114, 188, 223));
         colors.add(Color.rgb(255, 123, 124));
         colors.add(Color.rgb(57, 135, 200));
-
+        colors.add(Color.rgb(57, 135, 200));
+        colors.add(Color.rgb(57, 135, 200));
         pieDataSet.setColors(colors);
         DisplayMetrics metrics = getResources().getDisplayMetrics();
         float px = 5 * (metrics.densityDpi / 160f);
