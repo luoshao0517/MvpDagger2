@@ -3,4 +3,5 @@
     <string name="text_dagger_mvp">Dagger2+MVP实现界面</string>
     <string name="text_text_leftorright">textview实现左右对齐</string>
     <string name="text_chart">饼状图</string>
+    <string name="text_size">字体大小调节</string>
 </resources>

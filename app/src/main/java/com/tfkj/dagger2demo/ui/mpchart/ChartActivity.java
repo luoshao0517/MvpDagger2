@@ -129,7 +129,6 @@ public class ChartActivity extends BaseActivity {
         pieDataSet.setValueLinePart2Length(0.8f);
         //设置个饼状图之间的距离
         pieDataSet.setSliceSpace(0.3f);
-
         ArrayList<Integer> colors = new ArrayList<Integer>();
 
         // 饼图颜色

@@ -8,6 +8,7 @@ import com.tfkj.dagger2demo.ui.MainActivity;
 import com.tfkj.dagger2demo.ui.first.FirstActivity;
 import com.tfkj.dagger2demo.ui.mpchart.ChartActivity;
 import com.tfkj.dagger2demo.ui.text.TextViewActivity;
+import com.tfkj.dagger2demo.ui.textsize.ChangeTextSizeActivity;
 
 public class ARouterUtils {
     /**
@@ -35,5 +36,11 @@ public class ARouterUtils {
      */
     public static void switchToChartActivity(){
         ARouter.getInstance().build(Constance.ACTIVITY_URL_CHART).navigation();
+    }
+    /**
+     * {@link ChangeTextSizeActivity}
+     */
+    public static void switchToChangetTextSizeActivity(){
+        ARouter.getInstance().build(Constance.ACTIVITY_URL_TEXTSIZE).navigation();
     }
 }

@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.blankj.utilcode.util.Utils;
 import com.tfkj.dagger2demo.di.component.AppComponent;
 import com.tfkj.dagger2demo.di.component.DaggerAppComponent;
 import com.tfkj.dagger2demo.di.module.AppModule;
@@ -30,6 +31,7 @@ public class MyApplication extends Application {
             ARouter.openLog();
             ARouter.openDebug();
         }
+        Utils.init(this);
         ARouter.init(mInstance);
         //log日志抓取
         CrashHandler.getInstance().init(this);

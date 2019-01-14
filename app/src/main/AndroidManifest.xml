@@ -48,7 +48,9 @@
         <activity android:name=".ui.MainActivity" />
         <activity android:name=".ui.first.FirstActivity" />
         <activity android:name=".ui.text.TextViewActivity" />
-        <activity android:name=".ui.mpchart.ChartActivity"></activity>
+        <activity android:name=".ui.mpchart.ChartActivity" />
+        <activity android:name=".ui.delect.DelectActivity" />
+        <activity android:name=".ui.textsize.ChangeTextSizeActivity"></activity>
     </application>
 
 </manifest>

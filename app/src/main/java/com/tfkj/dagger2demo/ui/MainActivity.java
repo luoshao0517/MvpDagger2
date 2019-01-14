@@ -5,12 +5,18 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.blankj.utilcode.util.SPUtils;
 import com.tfkj.dagger2demo.R;
 import com.tfkj.dagger2demo.base.BaseMvpActivity;
 import com.tfkj.dagger2demo.bean.Person;
 import com.tfkj.dagger2demo.common.BundleCommon;
 import com.tfkj.dagger2demo.common.Constance;
+import com.tfkj.dagger2demo.ui.textsize.event.TextSizeEvent;
 import com.tfkj.dagger2demo.util.ARouterUtils;
+import com.tfkj.dagger2demo.view.CustomSeekbar;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import javax.inject.Inject;
 
@@ -24,6 +30,8 @@ public class MainActivity extends BaseMvpActivity<MainContract.MainView, MainPre
     TextView tvTitle;
     @BindView( R.id.btn_text_view)
     Button btnTextView;
+    @BindView(R.id.btn_text_seekBar)
+    Button btnTextSeekBar;
     private String TAG = "MainActivity";
 
     @Inject
@@ -35,7 +43,7 @@ public class MainActivity extends BaseMvpActivity<MainContract.MainView, MainPre
     }
 
 
-    @OnClick({R.id.btn_dagger_mvp, R.id.btn_text_view,R.id.btn_text_chart})
+    @OnClick({R.id.btn_dagger_mvp, R.id.btn_text_view,R.id.btn_text_chart,R.id.btn_text_seekBar})
     public void showToast(View v) {
         switch (v.getId()) {
             case R.id.btn_dagger_mvp:
@@ -48,6 +56,9 @@ public class MainActivity extends BaseMvpActivity<MainContract.MainView, MainPre
             case R.id.btn_text_chart:
                 mPresenter.startChartActivity();
                 break;
+            case R.id.btn_text_seekBar:
+                mPresenter.startTextSizeActivity();
+                break;
             default:
                 break;
         }
@@ -57,7 +68,14 @@ public class MainActivity extends BaseMvpActivity<MainContract.MainView, MainPre
     @Override
     protected void initView() {
         super.initView();
+        EventBus.getDefault().register(this);
         tvTitle.setText("小Demo");
+        float aFloat = SPUtils.getInstance(Constance.SP_NAME).getFloat(Constance.TEXT_SIZE_FLOAT);
+        setTextSize(aFloat);
+    }
+
+    private void setTextSize(float aFloat) {
+        btnTextSeekBar.setTextSize(Constance.TEXT_SIZE*aFloat);
     }
 
     @Override
@@ -85,5 +103,20 @@ public class MainActivity extends BaseMvpActivity<MainContract.MainView, MainPre
     @Override
     public void startChartActivity() {
         ARouterUtils.switchToChartActivity();
+    }
+
+    @Override
+    public void startTextSizeActivity() {
+        ARouterUtils.switchToChangetTextSizeActivity();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+    @Subscribe
+    public void getTextSize(TextSizeEvent event){
+        setTextSize(event.textSize);
     }
 }

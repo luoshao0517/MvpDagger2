@@ -25,4 +25,9 @@ public class MainPresenter extends BaseMvpPresenter<MainContract.MainView> imple
     public void startChartActivity() {
         getView().startChartActivity();
     }
+
+    @Override
+    public void startTextSizeActivity() {
+        getView().startTextSizeActivity();
+    }
 }

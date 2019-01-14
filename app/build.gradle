@@ -61,4 +61,6 @@ dependencies {
     implementation "com.gyf.immersionbar:immersionbar:$rootProject.immersionbarVersion"
     //mpchartandroid
     implementation "com.github.PhilJay:MPAndroidChart:$rootProject.mpchartandroidVersion"
+    //eventbus
+    implementation "org.greenrobot:eventbus:$rootProject.eventbus"
 }

@@ -8,11 +8,13 @@ public interface MainContract {
         void startFirstActivity();
         void startTextViewActivity(String title);
         void startChartActivity();
+        void startTextSizeActivity();
     }
 
     interface Presenter extends BasePresenter<MainView> {
         void startFirstActivity();
         void startTextViewActivity(String title);
         void startChartActivity();
+        void startTextSizeActivity();
     }
 }
